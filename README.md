@@ -13,8 +13,7 @@ The scope is **installing and launching Blue Iris**. Once the application opens,
 | [Tested installation](docs/TESTED-SETUP.md) | Check the versions and dependencies used in the working installation. |
 | [Startup troubleshooting](docs/TROUBLESHOOTING.md) | Resolve prefix, dependency and launch problems. |
 | [Optional scripts](scripts/README.md) | Create the Wine prefix and launch the installed application. |
-| [Reddit post](docs/REDDIT-POST.md) | A short introduction for sharing this project. |
 
 Blue Iris is Windows software. This is an unofficial Wine installation guide, with no vendor affiliation. Installers, Microsoft DLLs and license keys are not included. Obtain your own legitimate copies and handle any normal evaluation dialog.
 
-For Blue Iris 5 32-bit, use the [separate repository](https://github.com/TTdriver/blue-iris-wine-linux).
+For Blue Iris 5 32-bit, use the [separate repository](https://github.com/TTdriver/blue-iris-5-x32-wine-linux).
