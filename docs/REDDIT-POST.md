@@ -1,17 +1,13 @@
-# Optional sharing text
+# Reddit sharing text
 
-Use this as text to post yourself. Nothing has been posted automatically.
+Use the text below to introduce this installation project.
 
-## Title
+---
 
-How I got Blue Iris 6 x64 running on Linux with Wine
-
-## Text
-
-I got Blue Iris 6.1.3.10 x64 running on Zorin OS 18.1 with Wine 10.0. The startup workaround used a matching native x64 VC/MFC runtime and an IPHLPAPI DLL from my own Windows installation. Ten cameras produced decodable full-resolution clips using main/substream pairs.
+I got Blue Iris 6 64-bit opening on Linux through Wine and put the installation approach here:
 
 https://github.com/TTdriver/blue-iris-6-wine-linux
 
-The repo has a human guide and a prompt to copy into your own AI assistant. It is intended to help you get BI running and verify a basic recording. You are on your own from there. This worked in my setup; trying it is at your own risk, with no support or reliability guarantee. Known stability limits are documented. No vendor binaries, credentials or footage are included.
+There is a step-by-step guide for people doing the installation themselves, plus a clearly marked prompt you can copy into your own AI assistant. The repository lists the versions and dependencies that worked for me and includes optional prefix and launch scripts.
 
-The older BI 5 32-bit guide is at https://github.com/TTdriver/blue-iris-wine-linux.
+This is a personal experiment shared as-is. Try it at your own risk. The guide ends when BI opens; further setup is up to you. There is no support or reliability guarantee, and no vendor installers, DLLs or license keys are included.

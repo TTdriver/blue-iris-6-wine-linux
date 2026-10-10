@@ -1,19 +1,26 @@
-# Human setup guide
+# Install Blue Iris 6 yourself
 
 Use this if you are doing the setup yourself. For an AI-assisted setup, use [AI-PROMPT.md](AI-PROMPT.md). This is a generic starting point drawn from a working personal setup, not an unattended installer. Try it at your own risk, with no support or reliability guarantee.
 
 ## 1. Prepare a Linux desktop and Wine
 
-The reference system was Zorin OS 18.1, Wine 10.0, 8 GB guest RAM and a 64 GB disk. Check the resources actually visible inside Linux:
+The working installation used Zorin OS 18.1 and Wine 10.0. Start from a graphical Linux desktop and check your versions:
 
 ```bash
 cat /etc/os-release
 wine --version
-free -h
-df -h /
 ```
 
-Use your distribution's Wine installation instructions. On the tested Ubuntu/Zorin family, the package tools used were Wine, wine64, wine32:i386, p7zip-full, ripgrep and Python 3. Some installers need Wine's 32-bit support even though BI itself is x64. Other distributions are not proven equivalents.
+Use your distribution's Wine installation instructions. You need Wine, its 32-bit support for installers, and ripgrep for the helper scripts. On Ubuntu/Zorin, the package commands used were:
+
+```bash
+sudo dpkg --add-architecture i386
+sudo apt-get update
+sudo apt-get install wine wine64 wine32:i386 p7zip-full ripgrep
+wine --version
+```
+
+Package names and the available Wine version can differ on other distributions. Run the remaining commands from the root of this repository.
 
 Create a separate 64-bit prefix:
 
@@ -21,7 +28,7 @@ Create a separate 64-bit prefix:
 bash scripts/prepare-prefix.sh "$HOME/.local/share/blueiris6-wine"
 ```
 
-Do not reuse a win32 prefix or overwrite your existing recorder.
+Use a new directory; do not reuse a win32 prefix or overwrite an existing installation.
 
 ## 2. Install your legitimate BI 6 package
 
@@ -66,28 +73,10 @@ On 64-bit Windows, System32 contains the 64-bit DLL. SysWOW64 contains the 32-bi
 bash scripts/launch-blue-iris.sh "$HOME/.local/share/blueiris6-wine"
 ```
 
-The helper selects the native IPHLPAPI and VC/MFC implementations, changes into the app directory and runs BI. It adds no memory or swap limit. See [scripts/README.md](../scripts/README.md) for path overrides and logs.
+The helper selects the native IPHLPAPI and VC/MFC implementations, changes into the app directory and runs BI. See [scripts/README.md](../scripts/README.md) for path overrides and logs.
 
 Handle the normal evaluation Demo dialog yourself if it appears. Do not bypass licensing or assume that a service wrapper dismisses it.
 
-## 6. Get one camera recording
+Confirm that the main application opens. **That completes this guide.** Further application setup is your responsibility.
 
-Use BI's camera settings to add one camera with your own private credentials. Confirm the Linux machine can reach its RTSP stream. Start with a measured low-resolution stream and hardware acceleration disabled. Use local recording storage with a modest retention setting and confirm:
-
-1. Live video appears.
-2. A new recording grows.
-3. A completed clip plays back.
-
-Imported settings can keep stale resolution metadata. Check that the configured dimensions match the selected stream. Do not edit registry files while BI or that prefix's Wine server is running.
-
-That is the finish line for this guide. Further camera, storage, service, alert and performance configuration is up to you.
-
-## Optional: keep full-resolution recordings
-
-In BI's network-video settings, configure the camera's main stream and its separate substream in their respective fields. The installed BI manual describes using the main stream for recording and the substream for lower-cost decoding, motion analysis and group display. The tested cameras used `/h264Preview_01_main` and `/h264Preview_01_sub`; other camera models use different paths.
-
-Select continuous recording into BVR and verify that the resulting clip actually contains main-stream resolution. Do not confuse a low-resolution grid preview with the recorded resolution. Test one camera first. BI 5's substream-only registry normalization script should not be applied blindly here: in a dual-stream setup the main and substream dimensions intentionally differ.
-
-## Desktop lifetime matters
-
-Keep the graphical session hosting BI alive. In the observed run, ending that session broke the X connection and stopped BI. Running through systemd does not make a GUI application independent of its display. Reboot startup, headless operation and unattended evaluation-dialog handling are outside this guide.
+Keep the graphical desktop session open while BI runs. See [startup troubleshooting](TROUBLESHOOTING.md) if the program does not open. These helpers launch a desktop application; unattended or headless operation is outside this installation guide.
